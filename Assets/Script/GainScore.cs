@@ -7,6 +7,8 @@ public class GainScore : MonoBehaviour
 {
     public Text score;
     public Text ballCount;
+    public AudioSource touchNetAudio;
+    public AudioSource horrayAudio;
 
 
     private void OnTriggerEnter(Collider collision)
@@ -32,6 +34,8 @@ public class GainScore : MonoBehaviour
         transform.GetChild(1).GetComponent<ParticleSystem>().Play();
         ballCount.text = $"{TotalScore.ballCount1}球 ({scoreString})" ;
         score.text = $"得分:{TotalScore.score1}";
+        touchNetAudio.Play();
+        horrayAudio.Play();
     }
 
 }
