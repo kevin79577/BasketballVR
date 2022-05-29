@@ -11,17 +11,17 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        if (countNum > 0)//·í­Ë¼Æ¨ì0¡A´N¤£­Ë¼Æ
+        if (countNum > 0)//ï¿½ï¿½ï¿½Ë¼Æ¨ï¿½0ï¿½Aï¿½Nï¿½ï¿½ï¿½Ë¼ï¿½
         {
-            //²Ö¿n²{¦b¹L¤F´X¬í
+            //ï¿½Ö¿nï¿½{ï¿½bï¿½Lï¿½Fï¿½Xï¿½ï¿½
             ftime += Time.deltaTime; //ftime = ftime + Time.deltaTime
-            if (ftime >= 1f)//·í²Ö¿n¶W¹L1¬í
+            if (ftime >= 1f)//ï¿½ï¿½ï¿½Ö¿nï¿½Wï¿½L1ï¿½ï¿½
             {
-                //­Ë¼Æ
+                //ï¿½Ë¼ï¿½
                 countNum--;//countNum = countNum -1 //countNum-=1
-                //Åã¥Ü¥X¨Ó
-                clock.text = $"{countNum}¬í­Ë¼Æ";
-                //±N²Ö¿nÂk¹s¡A­«·s­pºâ¤U­Ó1¬í
+                //ï¿½ï¿½Ü¥Xï¿½ï¿½
+                clock.text = $"{countNum/60}:{countNum%60}";
+                //ï¿½Nï¿½Ö¿nï¿½kï¿½sï¿½Aï¿½ï¿½ï¿½sï¿½pï¿½ï¿½Uï¿½ï¿½1ï¿½ï¿½
                 ftime = 0f;
             }
         }

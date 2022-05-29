@@ -29,6 +29,10 @@ public class PlayerMove : MonoBehaviour
             IsTwoPoint = true;
             Debug.Log("enter twoPoint area");
         }
+        else if (other.gameObject.tag =="circlePoint")
+        {
+            ballStatus.circlePoint = other.gameObject.transform.parent.gameObject;
+        }
     }
     //���}2���y�ϰ� => 3���y
     private void OnTriggerExit(Collider other)
@@ -38,14 +42,18 @@ public class PlayerMove : MonoBehaviour
             IsTwoPoint = false;
             Debug.Log("exit twoPoint area");
         }
+        else if (other.gameObject.tag =="circlePoint")
+        {
+            ballStatus.circlePoint = null;
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             //���ʪ��a��m
-            transform.position -= new Vector3(1, 0, 0);
+            transform.position -= new Vector3(.1f, 0, 0);
             //���ʲy����m
             //transform.GetChild(0) ���]�w�y����l��m
             ball.transform.position = transform.GetChild(0).position;
@@ -53,28 +61,28 @@ public class PlayerMove : MonoBehaviour
             ballRid.velocity = Vector3.zero;
             
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += new Vector3(1, 0, 0);
+            transform.position += new Vector3(.1f, 0, 0);
             ball.transform.position = transform.GetChild(0).position;
             ball.transform.rotation = new Quaternion(0,0,0,0);
             ballRid.velocity = Vector3.zero;
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position -= new Vector3(0, 0, 1);
+            transform.position -= new Vector3(0, 0, .1f);
             ball.transform.position = transform.GetChild(0).position;
             ball.transform.rotation = new Quaternion(0,0,0,0);
             ballRid.velocity = Vector3.zero;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += new Vector3(0, 0, 1);
+            transform.position += new Vector3(0, 0, 0.1f);
             ball.transform.position = transform.GetChild(0).position;
             ball.transform.rotation = new Quaternion(0,0,0,0);
             ballRid.velocity = Vector3.zero;
         }
-        else if(Input.GetKeyDown(KeyCode.RightControl))
+        else if(Input.GetKey(KeyCode.RightControl))
         {
             transform.position = freeThrowPoint.transform.position;
             ball.transform.position = transform.GetChild(0).position;
@@ -86,9 +94,9 @@ public class PlayerMove : MonoBehaviour
         {
             Rigidbody rig = ball.GetComponent<Rigidbody>();
             Vector3 diff = basket.transform.position - ball.transform.position;
-            
             Vector3 dir = diff.normalized + new Vector3(0,2,0);
-            flameBall.Play();
+            if(ballStatus.circlePoint != null)
+                flameBall.Play();
 
             ballStatus.IsTwoPoint = IsTwoPoint;
             ballStatus.IsFreeThrow = IsFreeThrow;
@@ -97,7 +105,7 @@ public class PlayerMove : MonoBehaviour
             else if (IsTwoPoint)
                 rig.AddForce(dir * jumpForce*5/6);
             else
-                rig.AddForce(dir * jumpForce);
+                rig.AddForce(dir * jumpForce*14/15);
         }
         
     }
