@@ -12225,6 +12225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circle: {fileID: 7625601671470031139, guid: a1a81c836a637bc488dd2c08dcbf0b01, type: 3}
   circleLife: 10
+  circleNum: 3
 --- !u!4 &301649298
 Transform:
   m_ObjectHideFlags: 0

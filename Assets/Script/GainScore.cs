@@ -38,8 +38,7 @@ public class GainScore : MonoBehaviour
         touchNetAudio.Play();
         horrayAudio.Play();
 
-        CirclePoint script = circlePointCollection.GetComponent<CirclePoint>();
-        script.clearCurrentCircle();
+        ballStatus.circlePoint.SetActive(false);
 
     }
 
