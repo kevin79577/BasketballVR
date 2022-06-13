@@ -8,6 +8,9 @@ public class Counter : MonoBehaviour
     public int countNum;
     float ftime;
     public Text clock; 
+    public AudioSource whsitleAudio;
+    public AudioSource warningAudio;
+    public GameObject circleCollenction;
     // Update is called once per frame
     void Update() 
     {
@@ -21,6 +24,13 @@ public class Counter : MonoBehaviour
                 countNum--;//countNum = countNum -1 //countNum-=1
                 //��ܥX��
                 clock.text = $"{countNum/60}:{countNum%60}";
+                if (countNum == 0)
+                {
+                    whsitleAudio.Play();
+                    circleCollenction.GetComponent<CirclePoint>().stop();
+                }
+                else if (countNum < 10)
+                    warningAudio.Play();
                 //�N�ֿn�k�s�A���s�p��U��1��
                 ftime = 0f;
             }

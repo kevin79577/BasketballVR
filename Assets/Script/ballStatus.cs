@@ -6,7 +6,7 @@ public static class ballStatus
 {
     public static bool IsTwoPoint = false;
     public static bool IsFreeThrow = false;
-    public static GameObject circlePoint;
+    public static GameObject circlePoint = null;
     public static void statusReset()
     {
         IsTwoPoint = false;
